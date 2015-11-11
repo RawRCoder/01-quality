@@ -35,12 +35,10 @@ namespace Markdown
         public string Text { get; set; }
         public override string ToString() => Text;
         public bool Empty => string.IsNullOrEmpty(Text);
-        public void AppendChar(char c)
+        public void Append(char c) => Append("" + c);
+        public void Append(string s)
         {
-            if (Empty)
-                Text = "" + c;
-            else
-                Text += c;
+            Text = (Text ?? "") + s;
         }
     }
 
@@ -73,6 +71,6 @@ namespace Markdown
     }
     public class MarkdownRootObject : MarkdownObject
     {
-        public override string ToString() => ("\r\n" + "<meta charset=\"utf-8\"/>".WrapWithTag("head") + "\r\n" + SubobjectsString.WrapWithTag("body") + "\r\n").WrapWithTag("html");
+        public override string ToString() => SubobjectsString;
     }
 }
