@@ -34,6 +34,14 @@ namespace MarkdownTests
         [TestCase("_Test 123_ ", Result = "<em>Test 123</em><p> </p>", TestName = "Em and a paragraph test")]
         [TestCase("__Test 123__ ", Result = "<strong>Test 123</strong><p> </p>", TestName = "Strong and a paragraph test")]
         [TestCase("`Test 123` ", Result = "<code>Test 123</code><p> </p>", TestName = "Code and a paragraph test")]
+
+        [TestCase("_EMEMEM __STRONG__ EMEMEM_", Result = "<em>EMEMEM <strong>STRONG</strong> EMEMEM</em>", TestName = "Em in a strong tag test")]
+        [TestCase("__EMEMEM _STRONG_ EMEMEM__", Result = "<strong>EMEMEM <em>STRONG</em> EMEMEM</strong>", TestName = "String in an em tag test")]
+        [TestCase("`EMEMEM _EM_ EMEMEM`", Result = "<code>EMEMEM _EM_ EMEMEM</code>", TestName = "Em in a code tag test")]
+        [TestCase("`EMEMEM __STRONG__ EMEMEM`", Result = "<code>EMEMEM __STRONG__ EMEMEM</code>", TestName = "Strong in a code tag test")]
+
+        [TestCase("__lol _azaza `kek", Result = "<p>__lol _azaza `kek</p>", TestName = "Unpaired tags test 1")]
+        [TestCase("`___lol azaza kek", Result = "<p>`___lol azaza kek</p>", TestName = "Unpaired tags test 2")]
         public string SimpleValueTest(string src)
         {
             return p.Process(src);

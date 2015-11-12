@@ -14,7 +14,7 @@ namespace Markdown
         public MarkdownRootObject Root { get; } = new MarkdownRootObject();
         public MarkdownObject CurrentObject { get; set; }
         public bool Screening { get; set; } = false;
-        public bool ShouldNotGenerateSubconstructions => CurrentObject.Parent is MarkdownCodeObject;
+        public bool ShouldNotGenerateSubconstructions => CurrentObject is MarkdownCodeObject;
         public MarkdownTextObject CurrentTextObject
         {
             get
