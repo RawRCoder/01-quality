@@ -15,10 +15,8 @@ namespace Markdown
             }
             var filename = args[0];
             var targetFileName = args.Length >= 2 ? args[1] : filename + ".html";
-            var html = File.CreateText(targetFileName);
             var p = new MarkdownProcessor();
-            html.Write(WrapWithHtmlHeadAndBody(p.ProcessFromFile(filename)));
-            html.Close();
+            File.WriteAllText(targetFileName, WrapWithHtmlHeadAndBody(p.ProcessFromFile(filename)));
         }
 
         static string WrapWithHtmlHeadAndBody(string s) =>

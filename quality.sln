@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markdown", "Markdown\Markdown.csproj", "{DB4740ED-52AE-484B-9914-140930E5DA6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownTests", "MarkdownTests\MarkdownTests.csproj", "{C5D45C27-A690-42E8-A974-E1028EA8A77A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,18 +53,6 @@ Global
 		{DB4740ED-52AE-484B-9914-140930E5DA6B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DB4740ED-52AE-484B-9914-140930E5DA6B}.Release|x86.ActiveCfg = Release|Any CPU
 		{DB4740ED-52AE-484B-9914-140930E5DA6B}.Release|x86.Build.0 = Release|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Debug|x86.Build.0 = Debug|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Release|x86.ActiveCfg = Release|Any CPU
-		{C5D45C27-A690-42E8-A974-E1028EA8A77A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

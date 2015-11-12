@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Markdown
 {
-    public static class HtmlStringUtils
+    internal static class HtmlStringUtils
     {
         private static string WrapWithQuotes(this string s)
         {

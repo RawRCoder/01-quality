@@ -1,12 +1,9 @@
-﻿using System;
-using Markdown;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace MarkdownTests
+namespace Markdown
 {
-    [TestClass]
-    public class StateTest
+    [TestFixture]
+    class StateTest
     {
         [TestCase("Text _abc_ Text", "_", 0, Result = 5)]
         [TestCase("Text _abc_ Text", "_", 5, Result = 0)]

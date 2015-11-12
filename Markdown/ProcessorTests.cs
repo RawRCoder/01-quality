@@ -1,18 +1,15 @@
-﻿using System;
-using Markdown;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace MarkdownTests
+namespace Markdown
 {
-    [TestClass]
-    public class ProcessorTests
+    [TestFixture]
+    class ProcessorTests
     {
-        private MarkdownProcessor p;
+        private MarkdownProcessor _p;
         [SetUp]
         public void TestInitialize()
         {
-            p = new MarkdownProcessor();
+            _p = new MarkdownProcessor();
         }
 
         [TestCase("Test 123", Result = "<p>Test 123</p>", TestName = "Simple test")]
@@ -44,9 +41,7 @@ namespace MarkdownTests
         [TestCase("`___lol azaza kek", Result = "<p>`___lol azaza kek</p>", TestName = "Unpaired tags test 2")]
         public string SimpleValueTest(string src)
         {
-            return p.Process(src);
+            return _p.Process(src);
         }
-
-        
     }
 }
