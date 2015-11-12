@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace Markdown
 {
     public class MarkdownProcessor
     {
-        private MardownProcessorState State { get; set; }
+        private MarkdownProcessorState State { get; set; }
         public string Process(string markdownText)
         {
-            State = new MardownProcessorState(markdownText);
+            State = new MarkdownProcessorState(markdownText);
             while (MakeStep()) {}
             FixUnclosedTags();
             return State.ToString();
@@ -54,7 +55,7 @@ namespace Markdown
             return !State.Finished;
         }
 
-        public bool IsSeporator(char? c)
+        public static bool IsSeporator(char? c)
         {
             if (c == null)
                 return true;
@@ -64,6 +65,28 @@ namespace Markdown
                 return true;
             return false;
         }
+
+        public bool IsBlockClosedSomewhere(string tag, bool needSeporator = true, bool canContainDoubleNewLines = false)
+        {
+            if (string.IsNullOrEmpty(tag))
+                return false;
+            ++State.Position;
+            var endId = (needSeporator)
+                ? State.GetNextSubstringEndedWithSeporatorRelativeId(tag, IsSeporator)
+                : State.GetNextSubstringRelativeId(tag);
+            --State.Position;
+            if (endId < 0)
+                return false;
+            ++endId;
+            if (canContainDoubleNewLines)
+                return true;
+            return new[] {
+                State.GetNextSubstringRelativeId("\r\n\r\n"),
+                State.GetNextSubstringRelativeId("\n\n"),
+                State.GetNextSubstringRelativeId("\r\r")
+            }.All(i => i < 0 || i >= endId);
+        }
+
         public void FixUnclosedTags()
         {
             while (State.CurrentObject != null && !State.CurrentObject.Closed)
@@ -102,6 +125,11 @@ namespace Markdown
                 return;
             }
 
+            if (!IsBlockClosedSomewhere("`", false, true))
+            {
+                State.AppendText("`");
+                return;
+            }
             State.PushCodeWrapper(); // opening `
         }
         private void ProcessUnderline()
@@ -114,8 +142,13 @@ namespace Markdown
         }
         private void ProcessSingleUnderline()
         {
-            if (IsSeporator(State.PreviousChar)) // opening _
+            if (IsSeporator(State.PreviousChar) && !(State.CurrentObject is MarkdownEmObject)) // opening _
             {
+                if (!IsBlockClosedSomewhere("_"))
+                {
+                    State.AppendText("_");
+                    return;
+                }
                 State.PushEmWrapper();
                 return;
             }
@@ -136,10 +169,15 @@ namespace Markdown
         }
         private void ProcessDoubleUnderline()
         {
-            if (IsSeporator(State.PreviousChar)) // opening __
+            if (IsSeporator(State.PreviousChar) && !(State.CurrentObject is MarkdownStrongObject)) // opening __
             {
-                State.PushStrongWrapper();
                 ++State.Position;
+                if (!IsBlockClosedSomewhere("__"))
+                {
+                    State.AppendText("__");
+                    return;
+                }
+                State.PushStrongWrapper();
                 return;
             }
             ++State.Position;

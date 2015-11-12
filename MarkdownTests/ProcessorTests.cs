@@ -19,9 +19,9 @@ namespace MarkdownTests
         [TestCase("Test 123\r\nTest 666", Result = "<p>Test 123 Test 666</p>", TestName = "Unite paragraphs test (Windows style)")]
         [TestCase("Test 123\nTest 666", Result = "<p>Test 123 Test 666</p>", TestName = "Unite paragraphs test (Unix style)")]
         [TestCase("Test 123\rTest 666", Result = "<p>Test 123 Test 666</p>", TestName = "Unite paragraphs test (Old Mac OS style)")]
-        [TestCase("Test 123\r\n\r\nTest 666", Result = "<p>Test 123</p><p>Test 666</p>", TestName = "2 Paragraphs test (Windows style")]
-        [TestCase("Test 123\n\nTest 666", Result = "<p>Test 123</p><p>Test 666</p>", TestName = "2 Paragraphs test (Unix style")]
-        [TestCase("Test 123\r\rTest 666", Result = "<p>Test 123</p><p>Test 666</p>", TestName = "2 Paragraphs test (Old Mac OS style")]
+        [TestCase("Test 123\r\n\r\nTest 666", Result = "<p>Test 123</p><p>Test 666</p>", TestName = "2 Paragraphs test (Windows style)")]
+        [TestCase("Test 123\n\nTest 666", Result = "<p>Test 123</p><p>Test 666</p>", TestName = "2 Paragraphs test (Unix style)")]
+        [TestCase("Test 123\r\rTest 666", Result = "<p>Test 123</p><p>Test 666</p>", TestName = "2 Paragraphs test (Old Mac OS style)")]
 
         [TestCase("_Test 123_", Result = "<em>Test 123</em>", TestName = "Em simple test")]
         [TestCase("__Test 123__", Result = "<strong>Test 123</strong>", TestName = "Strong simple test")]
@@ -46,5 +46,7 @@ namespace MarkdownTests
         {
             return p.Process(src);
         }
+
+        
     }
 }
