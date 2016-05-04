@@ -10,7 +10,7 @@ namespace Markdown
             return s.Contains("\"") ? $"'{s}'" : $"\"{s}\"";
         }
 
-        public static string WrapWithTag(this string content, string tag, Dictionary<string, string> attributes = null)
+        public static string WrapWithTag(this string content, string tag, IDictionary<string, string> attributes = null)
         {
             var headingTag = tag;
             if (attributes != null && attributes.Any())
